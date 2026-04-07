@@ -7,6 +7,7 @@
   position: relative;
   padding: 0;
   min-height: 300px;
+  color: #fff;
 }
 
 .hero h1 {
@@ -15,7 +16,19 @@
   margin-left: auto;
   margin-right: auto;
   padding: 40px 24px;
-  color: var(--background-color);
+  color: #fff;
+}
+
+.hero :is(h2, h3, h4, h5, h6, p, li) {
+  color: #fff;
+}
+
+.hero a:any-link {
+  color: #fff;
+}
+
+.hero a:hover {
+  color: #fff;
 }
 
 .hero picture {
