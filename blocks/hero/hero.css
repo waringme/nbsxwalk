@@ -1,3 +1,5 @@
+/* Split hero — matches NBS hero-banner (main--nbs--waringme.aem.page): left navy, right image */
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,48 +7,163 @@
 
 .hero {
   position: relative;
-  padding: 0;
-  min-height: 300px;
+  overflow: hidden;
+  background-color: #011546;
   color: #fff;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-top: 0;
+.hero.no-image {
+  background-color: #011546;
+}
+
+/* Text-only: no right column */
+.hero.no-image > div:first-child > div {
+  display: none;
+}
+
+.hero.no-image > div:last-child {
+  max-width: 1264px;
   margin-left: auto;
   margin-right: auto;
-  padding: 40px 24px;
+}
+
+/* Heading — NBS uses Georgia for hero titles */
+.hero :is(h1, h2) {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.hero h2 em,
+.hero h1 em {
+  font-style: normal;
+  color: #f9383d;
+}
+
+.hero :is(h3, h4, h5, h6) {
+  color: #fff;
+  margin-top: 0;
+}
+
+/* Body text */
+.hero p {
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.hero li {
   color: #fff;
 }
 
-.hero :is(h2, h3, h4, h5, h6, p, li) {
+/* CTA — white pill on navy (same as NBS hero-banner) */
+.hero .button-container a.button:any-link,
+.hero a.button:any-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 14px 28px;
+  background-color: #fff;
+  color: #011546;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.hero .button-container a.button:hover,
+.hero a.button:hover {
+  background-color: #e8e8f0;
+  border-color: #e8e8f0;
+  color: #011546;
+}
+
+/* Plain links in copy stay readable */
+.hero a:not(.button):any-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hero a:not(.button):hover {
   color: #fff;
 }
 
-.hero a:any-link {
-  color: #fff;
+/* Row layout — children of block participate in split */
+.hero > div {
+  display: contents;
 }
 
-.hero a:hover {
-  color: #fff;
+/* Text column — left half */
+.hero > div:last-child {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 32px 48px calc(max(32px, (100vw - 1264px) / 2 + 32px));
+  min-height: 400px;
+}
+
+.hero > div:last-child > div {
+  max-width: 560px;
+}
+
+/* Image — right half */
+.hero > div:first-child > div {
+  position: absolute;
+  inset: 0 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #011546;
 }
 
 .hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
-
-.hero img {
-  object-fit: cover;
+  display: block;
   width: 100%;
   height: 100%;
+  max-height: 100%;
 }
 
-@media (width >= 900px) {
-  .hero h1 {
-    padding: 40px 32px;
+.hero > div:first-child img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Mobile: stack, image area full width below text order = DOM order (image row first in typical hero) */
+@media (width < 900px) {
+  .hero > div:last-child {
+    min-height: unset;
+    padding: 32px 24px;
+  }
+
+  .hero > div:last-child > div {
+    max-width: 100%;
+  }
+
+  .hero > div:first-child > div {
+    position: relative;
+    inset: auto;
+    left: 0;
+    min-height: 240px;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .hero > div:first-child img {
+    max-width: 70%;
+    margin: 0 auto;
   }
 }

@@ -4,6 +4,52 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+/** Nationwide masthead logo (same asset as NBS preview site) */
+const NATIONWIDE_LOGO_SRC =
+  'https://main--nbs--waringme.aem.page/media_1728e027d05f4200263e001e0ce1a2e2ba39a5486.png'
+  + '?width=400&format=webply&optimize=medium';
+
+/**
+ * Ensures the nav brand shows the Nationwide logo image.
+ * @param {Element|null} navBrand
+ */
+function applyNationwideLogo(navBrand) {
+  if (!navBrand) return;
+
+  const setOnImg = (el) => {
+    el.src = NATIONWIDE_LOGO_SRC;
+    el.removeAttribute('srcset');
+    el.alt = el.alt || 'Nationwide';
+    el.loading = 'eager';
+  };
+
+  const picture = navBrand.querySelector('picture');
+  if (picture) {
+    picture.querySelectorAll('source').forEach((s) => s.remove());
+    const picImg = picture.querySelector('img');
+    if (picImg) {
+      setOnImg(picImg);
+      return;
+    }
+  }
+
+  const directImg = navBrand.querySelector('img');
+  if (directImg) {
+    setOnImg(directImg);
+    return;
+  }
+
+  let link = navBrand.querySelector('a[href]');
+  if (!link) {
+    link = document.createElement('a');
+    link.href = '/';
+    (navBrand.querySelector('.default-content-wrapper') || navBrand).prepend(link);
+  }
+  const logoImg = document.createElement('img');
+  setOnImg(logoImg);
+  link.prepend(logoImg);
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -141,6 +187,8 @@ export default async function decorate(block) {
       brandLink.closest('.button-container').className = '';
     }
   }
+
+  applyNationwideLogo(navBrand);
 
   // Strip button classes from sections and tools
   nav.querySelectorAll('.nav-sections .button, .nav-tools .button').forEach((button) => {
