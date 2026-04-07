@@ -1,8 +1,8 @@
 {
   "mappings": [
-    "/content/aem-boilerplate/:/"
+    "/content/nbsxwalk/:/"
   ],
   "includes": [
-    "/content/aem-boilerplate/"
+    "/content/nbsxwalk/"
   ]
 }
