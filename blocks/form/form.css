@@ -3,9 +3,10 @@
     --label-color: #666;
     --border-color: #818a91;
     --form-error-color: #ff5f3f;
-    --button-primary-color: #5F8DDA;
+    /* Match site nav (header #011546) */
+    --button-primary-color: #011546;
     --button-secondary-color: #666;
-    --button-primary-hover-color: #035fe6;
+    --button-primary-hover-color: #0d2569;
     --form-font-size-m: 22px;
     --form-font-size-s: 18px;
     --form-font-size-xs: 16px;
