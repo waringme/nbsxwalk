@@ -436,6 +436,33 @@ main .submit-wrapper{
     width: var(--form-submit-width);
 }
 
+/* Submit: match nav bar #011546 (overrides global `button.button` from styles.css) */
+main .form .submit-wrapper button.button,
+main .form button[type='submit'].button {
+    background-color: var(--button-primary-color);
+    background: var(--button-primary-color);
+    border: 2px solid var(--button-primary-color);
+    color: var(--form-button-color);
+}
+
+main .form .submit-wrapper button.button:hover,
+main .form button[type='submit'].button:hover {
+    background-color: var(--button-primary-hover-color);
+    background: var(--button-primary-hover-color);
+    border-color: var(--button-primary-hover-color);
+    color: var(--form-button-color);
+}
+
+main .form .submit-wrapper button.button:disabled,
+main .form button[type='submit'].button:disabled,
+main .form .submit-wrapper button.button:disabled:hover,
+main .form button[type='submit'].button:disabled:hover {
+    background-color: var(--form-input-disable-color);
+    background: var(--form-input-disable-color);
+    border-color: var(--form-input-disable-color);
+    color: var(--label-color);
+}
+
 main .form textarea:disabled,
 main .form select:disabled,
 main .form button:disabled {

@@ -92,6 +92,30 @@ header nav .nav-brand picture {
   line-height: 0;
 }
 
+/* Brand fragment: top-level list items in a horizontal row */
+header nav .nav-brand .default-content-wrapper > ul,
+header nav .nav-brand > ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+header nav .nav-brand .default-content-wrapper > ul > li,
+header nav .nav-brand > ul > li {
+  margin: 0;
+}
+
+header nav .nav-brand .default-content-wrapper > ul > li > a,
+header nav .nav-brand > ul > li > a {
+  display: inline-flex;
+  align-items: center;
+}
+
 /* Search box */
 header nav .nav-search {
   max-width: 400px;
